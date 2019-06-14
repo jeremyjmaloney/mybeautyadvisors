@@ -53,6 +53,15 @@ class Stores extends Component {
         </div>
         <div className="stores-list">
           <h2>ALL STORES</h2>
+          {this.props.stores.map((store, index) => {
+            return (
+              <div className="store" key={index}>
+                <h3>STORE #{store.store_number}</h3>
+                <h4>{store.store_name}</h4>
+                <h4>MANAGER: {store.manager_name}</h4>
+              </div>
+            )
+          })}
         </div>
       </div>
     )

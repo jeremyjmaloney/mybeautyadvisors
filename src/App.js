@@ -34,7 +34,7 @@ class App extends Component {
     .then(jData => {
       console.log(jData)
       this.setState({
-        stores: [...this.state.stores, jData]
+        stores: jData
       })
     })
   }
@@ -47,6 +47,7 @@ class App extends Component {
         <h1>MY BEAUTY ADVISORS</h1>
         <Stores
           createStore={this.createStore}
+          stores={this.state.stores}
         />
       </div>
     )
