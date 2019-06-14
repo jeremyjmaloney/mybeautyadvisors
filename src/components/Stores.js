@@ -38,17 +38,22 @@ class Stores extends Component {
   }
   render() {
     return (
-      <div className="stores-form">
-        <h2>ADD A NEW STORE</h2>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <input type="text" name="store_number" value={this.state.store_number} placeholder="STORE NUMBER" autoComplete="off" onChange={this.handleStoreNumber}/>
+      <div className="stores-container">
+        <div className="stores-form">
+          <h2>ADD A NEW STORE</h2>
+          <form className="form" onSubmit={this.handleSubmit}>
+            <input type="text" name="store_number" value={this.state.store_number} placeholder="STORE NUMBER" autoComplete="off" onChange={this.handleStoreNumber}/>
 
-          <input type="text" name="store_name" value={this.state.store_name} placeholder="STORE NAME" autoComplete="off" onChange={this.handleStoreName}/>
+            <input type="text" name="store_name" value={this.state.store_name} placeholder="STORE NAME" autoComplete="off" onChange={this.handleStoreName}/>
 
-          <input type="text" name="manager_name" value={this.state.store_manager_name} placeholder="MANAGER NAME" autoComplete="off" onChange={this.handleManagerName}/>
+            <input type="text" name="manager_name" value={this.state.store_manager_name} placeholder="MANAGER NAME" autoComplete="off" onChange={this.handleManagerName}/>
 
-          <input type="submit" value="ADD"/>
-        </form>
+            <input type="submit" value="ADD"/>
+          </form>
+        </div>
+        <div className="stores-list">
+          <h2>ALL STORES</h2>
+        </div>
       </div>
     )
   }
