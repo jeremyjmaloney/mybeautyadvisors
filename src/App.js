@@ -11,7 +11,8 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1>yo byatch</h1>
+        <h1>MY BEAUTY ADVISORS</h1>
+        <Stores />
       </div>
     )
   }
