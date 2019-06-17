@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Stores from './components/Stores'
 import Advisors from './components/Advisors'
 import './App.css'
+const URL = 'https://mybeautyadvisors-rails.herokuapp.com'
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends Component {
     }
   }
   createStore = (store) => {
-    fetch('http://localhost:3000/stores', {
+    fetch(`${URL}/stores`, {
       body:JSON.stringify(store),
       method:'POST',
       headers:{
@@ -30,7 +31,7 @@ class App extends Component {
     })
   }
   fetchStores = () => {
-    fetch('http://localhost:3000/stores', {
+    fetch(`${URL}/stores`, {
       method: 'GET'
     }).then(data => data.json())
     .then(jData => {
@@ -41,14 +42,14 @@ class App extends Component {
     })
   }
   deleteStore = (id) => {
-    fetch(`http://localhost:3000/stores/${id}`, {
+    fetch(`${URL}/stores/${id}`, {
       method: 'DELETE'
     }).then(data => {
       this.fetchStores()
     }).catch(error => console.log(error))
   }
   createAdvisor = (advisor) => {
-    fetch(`http://localhost:3000/advisors`, {
+    fetch(`${URL}/advisors`, {
       body:JSON.stringify(advisor),
       method:'POST',
       headers:{
@@ -63,7 +64,7 @@ class App extends Component {
     })
   }
   fetchAdvisors = (storeNum) => {
-    fetch(`http://localhost:3000/advisors/${storeNum}`, {
+    fetch(`${URL}/advisors/${storeNum}`, {
       method: 'GET'
     }).then(data => data.json())
     .then(jData => {
@@ -75,7 +76,7 @@ class App extends Component {
     })
   }
   deleteAdvisor = (id) => {
-    fetch(`http://localhost:3000/advisors/${id}`, {
+    fetch(`${URL}/advisors/${id}`, {
       method: 'DELETE'
     }).then(data => {
       this.fetchAdvisors(this.state.selectedStore)
