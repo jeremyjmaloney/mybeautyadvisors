@@ -44,8 +44,11 @@ class App extends Component {
     fetch(`http://localhost:3000/stores/${id}`, {
       method: 'DELETE'
     }).then(data => {
+      this.setState({
+        view: 'stores'
+      })
       this.fetchStores()
-    })
+    }).catch(error => console.log(error))
   }
   createAdvisor = (advisor) => {
     fetch(`http://localhost:3000/advisors`, {
@@ -73,6 +76,13 @@ class App extends Component {
         selectedStore: storeNum
       })
     })
+  }
+  deleteAdvisor = (id) => {
+    fetch(`http://localhost:3000/advisors/${id}`, {
+      method: 'DELETE'
+    }).then(data => {
+      this.fetchAdvisors(this.state.selectedStore)
+    }).catch(error => console.log(error))
   }
   handleView = (goToView, storeNum) => {
     this.setState({
@@ -105,6 +115,7 @@ class App extends Component {
                 fetchAdvisors={this.fetchAdvisors}
                 advisors={this.state.advisors}
                 createAdvisor={this.createAdvisor}
+                deleteAdvisor={this.deleteAdvisor}
                 selectedStore={this.state.selectedStore}
               />
             )

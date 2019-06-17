@@ -46,7 +46,7 @@ class Advisors extends Component {
           {this.props.advisors.map((advisor, index) => {
             return (
               <div className="advisor" key={index}>
-                <button className="delete">X</button>
+                <button onClick={()=>{this.props.deleteAdvisor(advisor.id)}} className="delete">X</button>
                 <h3>{advisor.name}</h3>
               </div>
             )
