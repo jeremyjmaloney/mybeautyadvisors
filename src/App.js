@@ -13,8 +13,8 @@ class App extends Component {
       stores: [],
       advisors: [],
       weeks: [],
-      selectedStore: 0,
-      selectedAdvisor: 0
+      selectedStore: {},
+      selectedAdvisor: {}
     }
   }
   createStore = (store) => {
@@ -65,15 +65,15 @@ class App extends Component {
       })
     })
   }
-  fetchAdvisors = (storeNum) => {
-    fetch(`${URL}/advisors/${storeNum}`, {
+  fetchAdvisors = (store) => {
+    fetch(`${URL}/advisors/${store.store_number}`, {
       method: 'GET'
     }).then(data => data.json())
     .then(jData => {
       console.log(jData)
       this.setState({
         advisors: jData,
-        selectedStore: storeNum
+        selectedStore: store
       })
     })
   }
@@ -84,16 +84,16 @@ class App extends Component {
       this.fetchAdvisors(this.state.selectedStore)
     }).catch(error => console.log(error))
   }
-  handleStoreView = (goToView, storeNum) => {
+  handleStoreView = (goToView, store) => {
     this.setState({
       view: goToView,
-      selectedStore: storeNum
+      selectedStore: store
     })
   }
-  handleAdvisorView = (goToView, advisorId) => {
+  handleAdvisorView = (goToView, advisor) => {
     this.setState({
       view: goToView,
-      selectedAdvisor: advisorId
+      selectedAdvisor: advisor
     })
   }
   componentDidMount() {
@@ -130,6 +130,7 @@ class App extends Component {
             return (
               <Weeks
                 view={this.state.view}
+                selectedAdvisor={this.state.selectedAdvisor}
               />
             )
           }

@@ -26,7 +26,7 @@ class Advisors extends Component {
   }
   componentWillMount = () => {
     this.setState({
-      belongs_to_store: this.props.selectedStore
+      belongs_to_store: this.props.selectedStore.store_number
     })
     this.props.fetchAdvisors(this.props.selectedStore)
   }
@@ -48,7 +48,7 @@ class Advisors extends Component {
               <div className="advisor" key={index}>
                 <button onClick={()=>{this.props.deleteAdvisor(advisor.id)}} className="delete">X</button>
                 <h3>{advisor.name}</h3>
-                <button onClick={()=>{this.props.handleAdvisorView('weeks', this.state.belongs_to_store)}}>VIEW ADVISOR</button>
+                <button onClick={()=>{this.props.handleAdvisorView('weeks', advisor)}}>VIEW ADVISOR</button>
               </div>
             )
           })}

@@ -9,7 +9,7 @@ class Weeks extends Component {
   }
   render() {
     return (
-      <h2>On weeks view</h2>
+      <h2>{this.props.selectedAdvisor.name}</h2>
     )
   }
 }
