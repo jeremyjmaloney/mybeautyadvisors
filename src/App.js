@@ -10,7 +10,8 @@ class App extends Component {
       view: 'stores',
       stores: [],
       advisors: [],
-      weeks: []
+      weeks: [],
+      selectedStore: 0
     }
   }
   createStore = (store) => {
@@ -46,6 +47,21 @@ class App extends Component {
       this.fetchStores()
     })
   }
+  createAdvisor = (advisor) => {
+    fetch(`http://localhost:3000/advisors`, {
+      body:JSON.stringify(advisor),
+      method:'POST',
+      headers:{
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(createdAdvisor => createdAdvisor.json())
+    .then(jData => {
+      this.setState({
+        advisors: [...this.state.advisors, jData]
+      })
+    })
+  }
   fetchAdvisors = (storeNum) => {
     fetch(`http://localhost:3000/advisors/${storeNum}`, {
       method: 'GET'
@@ -53,14 +69,15 @@ class App extends Component {
     .then(jData => {
       console.log(jData)
       this.setState({
-        advisors: jData
+        advisors: jData,
+        selectedStore: storeNum
       })
     })
-    this.handleView('advisors')
   }
-  handleView = (goToView) => {
+  handleView = (goToView, storeNum) => {
     this.setState({
-      view: goToView
+      view: goToView,
+      selectedStore: storeNum
     })
   }
   componentDidMount() {
@@ -78,14 +95,17 @@ class App extends Component {
                 createStore={this.createStore}
                 stores={this.state.stores}
                 deleteStore={this.deleteStore}
-                fetchAdvisors={this.fetchAdvisors}
+                handleView={this.handleView}
               />
             )
           } else if (this.state.view === 'advisors') {
             return (
               <Advisors
                 view={this.state.view}
+                fetchAdvisors={this.fetchAdvisors}
                 advisors={this.state.advisors}
+                createAdvisor={this.createAdvisor}
+                selectedStore={this.state.selectedStore}
               />
             )
           }

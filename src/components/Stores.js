@@ -55,7 +55,7 @@ class Stores extends Component {
           <h2>ALL STORES</h2>
           {this.props.stores.map((store, index) => {
             return (
-              <div onClick={()=>{this.props.fetchAdvisors(store.store_number)}} className="store" key={index}>
+              <div onClick={()=>{this.props.handleView('advisors', store.store_number)}} className="store" key={index}>
                 <button className="delete" onClick={()=>{this.props.deleteStore(store.id)}}>X</button>
                 <h3>STORE #{store.store_number}</h3>
                 <h4>{store.store_name}</h4>

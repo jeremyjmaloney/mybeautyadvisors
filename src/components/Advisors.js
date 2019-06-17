@@ -4,6 +4,7 @@ class Advisors extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      belongs_to_store: 0,
       name: ''
     }
   }
@@ -14,8 +15,20 @@ class Advisors extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
+    console.log(this.state.belongs_to_store);
     this.props.createAdvisor(this.state)
     this.clearForm()
+  }
+  clearForm = () => {
+    this.setState({
+      name: ''
+    })
+  }
+  componentWillMount = () => {
+    this.setState({
+      belongs_to_store: this.props.selectedStore
+    })
+    this.props.fetchAdvisors(this.props.selectedStore)
   }
   render() {
     return (
