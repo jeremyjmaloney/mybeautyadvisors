@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Stores from './components/Stores'
 import Advisors from './components/Advisors'
+import Weeks from './components/Weeks'
 import './App.css'
 const URL = 'https://mybeautyadvisors-rails.herokuapp.com'
 
@@ -12,7 +13,8 @@ class App extends Component {
       stores: [],
       advisors: [],
       weeks: [],
-      selectedStore: 0
+      selectedStore: 0,
+      selectedAdvisor: 0
     }
   }
   createStore = (store) => {
@@ -82,10 +84,16 @@ class App extends Component {
       this.fetchAdvisors(this.state.selectedStore)
     }).catch(error => console.log(error))
   }
-  handleView = (goToView, storeNum) => {
+  handleStoreView = (goToView, storeNum) => {
     this.setState({
       view: goToView,
       selectedStore: storeNum
+    })
+  }
+  handleAdvisorView = (goToView, advisorId) => {
+    this.setState({
+      view: goToView,
+      selectedAdvisor: advisorId
     })
   }
   componentDidMount() {
@@ -103,7 +111,7 @@ class App extends Component {
                 createStore={this.createStore}
                 stores={this.state.stores}
                 deleteStore={this.deleteStore}
-                handleView={this.handleView}
+                handleStoreView={this.handleStoreView}
               />
             )
           } else if (this.state.view === 'advisors') {
@@ -115,6 +123,13 @@ class App extends Component {
                 createAdvisor={this.createAdvisor}
                 deleteAdvisor={this.deleteAdvisor}
                 selectedStore={this.state.selectedStore}
+                handleAdvisorView={this.handleAdvisorView}
+              />
+            )
+          } else if (this.state.view === 'weeks') {
+            return (
+              <Weeks
+                view={this.state.view}
               />
             )
           }

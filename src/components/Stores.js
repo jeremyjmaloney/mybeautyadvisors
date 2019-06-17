@@ -60,7 +60,7 @@ class Stores extends Component {
                 <h3>STORE #{store.store_number}</h3>
                 <h4>{store.store_name}</h4>
                 <h4>MANAGER: {store.manager_name}</h4>
-                <button onClick={()=>{this.props.handleView('advisors', store.store_number)}}>VIEW STORE</button> 
+                <button onClick={()=>{this.props.handleStoreView('advisors', store.store_number)}}>VIEW STORE</button> 
               </div>
             )
           })}

@@ -48,6 +48,7 @@ class Advisors extends Component {
               <div className="advisor" key={index}>
                 <button onClick={()=>{this.props.deleteAdvisor(advisor.id)}} className="delete">X</button>
                 <h3>{advisor.name}</h3>
+                <button onClick={()=>{this.props.handleAdvisorView('weeks', this.state.belongs_to_store)}}>VIEW ADVISOR</button>
               </div>
             )
           })}
