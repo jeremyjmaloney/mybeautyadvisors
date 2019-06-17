@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Stores from './components/Stores'
+import Advisors from './components/Advisors'
 import './App.css'
 
 class App extends Component {
@@ -45,6 +46,23 @@ class App extends Component {
       this.fetchStores()
     })
   }
+  fetchAdvisors = (storeNum) => {
+    fetch(`http://localhost:3000/advisors/${storeNum}`, {
+      method: 'GET'
+    }).then(data => data.json())
+    .then(jData => {
+      console.log(jData)
+      this.setState({
+        advisors: jData
+      })
+    })
+    this.handleView('advisors')
+  }
+  handleView = (goToView) => {
+    this.setState({
+      view: goToView
+    })
+  }
   componentDidMount() {
     this.fetchStores()
   }
@@ -52,11 +70,27 @@ class App extends Component {
     return (
       <div className="container">
         <h1>MY BEAUTY ADVISORS</h1>
-        <Stores
-          createStore={this.createStore}
-          stores={this.state.stores}
-          deleteStore={this.deleteStore}
-        />
+        {(()=>{
+          if(this.state.view === 'stores') {
+            return (
+              <Stores
+                view={this.state.view}
+                createStore={this.createStore}
+                stores={this.state.stores}
+                deleteStore={this.deleteStore}
+                fetchAdvisors={this.fetchAdvisors}
+              />
+            )
+          } else if (this.state.view === 'advisors') {
+            return (
+              <Advisors
+                view={this.state.view}
+                advisors={this.state.advisors}
+              />
+            )
+          }
+        })()}
+
       </div>
     )
   }
