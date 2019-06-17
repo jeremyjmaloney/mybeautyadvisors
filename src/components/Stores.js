@@ -46,7 +46,7 @@ class Stores extends Component {
 
             <input type="text" name="store_name" value={this.state.store_name} placeholder="STORE NAME" autoComplete="off" onChange={this.handleStoreName}/>
 
-            <input type="text" name="manager_name" value={this.state.store_manager_name} placeholder="MANAGER NAME" autoComplete="off" onChange={this.handleManagerName}/>
+            <input type="text" name="manager_name" value={this.state.manager_name} placeholder="MANAGER NAME" autoComplete="off" onChange={this.handleManagerName}/>
 
             <input type="submit" value="ADD"/>
           </form>
@@ -56,6 +56,7 @@ class Stores extends Component {
           {this.props.stores.map((store, index) => {
             return (
               <div className="store" key={index}>
+                <button className="delete" onClick={()=>{this.props.deleteStore(store.id)}}>X</button>
                 <h3>STORE #{store.store_number}</h3>
                 <h4>{store.store_name}</h4>
                 <h4>MANAGER: {store.manager_name}</h4>

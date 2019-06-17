@@ -38,6 +38,13 @@ class App extends Component {
       })
     })
   }
+  deleteStore = (id) => {
+    fetch(`http://localhost:3000/stores/${id}`, {
+      method: 'DELETE'
+    }).then(data => {
+      this.fetchStores()
+    })
+  }
   componentDidMount() {
     this.fetchStores()
   }
@@ -48,6 +55,7 @@ class App extends Component {
         <Stores
           createStore={this.createStore}
           stores={this.state.stores}
+          deleteStore={this.deleteStore}
         />
       </div>
     )
