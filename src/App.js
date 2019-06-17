@@ -44,9 +44,6 @@ class App extends Component {
     fetch(`http://localhost:3000/stores/${id}`, {
       method: 'DELETE'
     }).then(data => {
-      this.setState({
-        view: 'stores'
-      })
       this.fetchStores()
     }).catch(error => console.log(error))
   }
