@@ -111,7 +111,11 @@ class App extends Component {
     })
   }
   deleteWeek = (id) => {
-    console.log('this is deleteweek')
+    fetch(`${URL}/weeks/${id}`, {
+      method: 'DELETE'
+    }).then(data => {
+      this.fetchWeeks(this.state.selectedAdvisor.id)
+    }).catch(error => console.log(error))
   }
   handleStoreView = (goToView, store) => {
     this.setState({
@@ -130,6 +134,7 @@ class App extends Component {
       view: goToView,
       selectedWeek: week
     })
+    console.log(week)
   }
   componentDidMount() {
     this.fetchStores()
@@ -170,6 +175,7 @@ class App extends Component {
                 createWeek={this.createWeek}
                 fetchWeeks={this.fetchWeeks}
                 deleteWeek={this.deleteWeek}
+                handleWeekView={this.handleWeekView}
               />
             )
           }

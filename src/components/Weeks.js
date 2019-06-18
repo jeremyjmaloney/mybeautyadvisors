@@ -82,9 +82,11 @@ class Weeks extends Component {
   }
   componentWillMount = () => {
     this.setState({
-      belongs_to_advisor: this.props.selectedAdvisor.id,
-      this.props.fetchWeeks(this.props.selectedAdvisor.id)
+      belongs_to_advisor: this.props.selectedAdvisor.id
     })
+  }
+  componentDidMount = () => {
+    this.props.fetchWeeks(this.props.selectedAdvisor.id)
   }
   render() {
     return (
@@ -117,10 +119,10 @@ class Weeks extends Component {
         <div className="weeks-list">
           {this.props.weeks.map((week, index) => {
             return (
-              <div className="week">
-                <button onClick={this.props.deleteWeek(week.id)}>X</button>
+              <div className="week" key={index}>
+                <button onClick={()=>{this.props.deleteWeek(week.id)}}>X</button>
                 <h3>{week.date}</h3>
-                <button onClick={this.props.handleWeekView('week', week)}>VIEW WEEK</button>
+                <button onClick={()=>{this.props.handleWeekView('week', week)}}>VIEW WEEK</button>
               </div>
             )
           })}
