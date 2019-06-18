@@ -14,7 +14,8 @@ class App extends Component {
       advisors: [],
       weeks: [],
       selectedStore: {},
-      selectedAdvisor: {}
+      selectedAdvisor: {},
+      selectedWeek: {}
     }
   }
   createStore = (store) => {
@@ -84,6 +85,34 @@ class App extends Component {
       this.fetchAdvisors(this.state.selectedStore)
     }).catch(error => console.log(error))
   }
+  createWeek = (week) => {
+    fetch(`${URL}/weeks`, {
+      body:JSON.stringify(week),
+      method:'POST',
+      headers:{
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then(createdWeek => createdWeek.json())
+    .then(jData => {
+      this.setState({
+        weeks: [...this.state.weeks, jData]
+      })
+    })
+  }
+  fetchWeeks = (advisorId) => {
+    fetch(`${URL}/weeks/${advisorId}`, {
+      method: 'GET'
+    }).then(data => data.json())
+    .then(jData => {
+      this.setState({
+        weeks: jData
+      })
+    })
+  }
+  deleteWeek = (id) => {
+    console.log('this is deleteweek')
+  }
   handleStoreView = (goToView, store) => {
     this.setState({
       view: goToView,
@@ -94,6 +123,12 @@ class App extends Component {
     this.setState({
       view: goToView,
       selectedAdvisor: advisor
+    })
+  }
+  handleWeekView = (goToView, week) => {
+    this.setState({
+      view: goToView,
+      selectedWeek: week
     })
   }
   componentDidMount() {
@@ -131,6 +166,10 @@ class App extends Component {
               <Weeks
                 view={this.state.view}
                 selectedAdvisor={this.state.selectedAdvisor}
+                weeks={this.state.weeks}
+                createWeek={this.createWeek}
+                fetchWeeks={this.fetchWeeks}
+                deleteWeek={this.deleteWeek}
               />
             )
           }

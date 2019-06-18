@@ -4,7 +4,7 @@ class Weeks extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
+      belongs_to_advisor: 0,
       date: '',
       act_upt: '',
       goal_upt: '',
@@ -64,10 +64,26 @@ class Weeks extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
+    this.props.createWeek(this.state)
+    this.clearForm()
+  }
+  clearForm = () => {
+    this.setState({
+      date: '',
+      act_upt: '',
+      goal_upt: '',
+      act_atv: '',
+      goal_atv: '',
+      act_sbr: '',
+      goal_sbr: '',
+      act_total: '',
+      goal_total: ''
+    })
   }
   componentWillMount = () => {
     this.setState({
-      name: this.props.selectedAdvisor.name
+      belongs_to_advisor: this.props.selectedAdvisor.id,
+      this.props.fetchWeeks(this.props.selectedAdvisor.id)
     })
   }
   render() {
@@ -97,6 +113,17 @@ class Weeks extends Component {
 
             <input type="submit" value="ADD"/>
           </form>
+        </div>
+        <div className="weeks-list">
+          {this.props.weeks.map((week, index) => {
+            return (
+              <div className="week">
+                <button onClick={this.props.deleteWeek(week.id)}>X</button>
+                <h3>{week.date}</h3>
+                <button onClick={this.props.handleWeekView('week', week)}>VIEW WEEK</button>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
