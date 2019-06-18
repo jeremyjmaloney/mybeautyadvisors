@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Stores from './components/Stores'
 import Advisors from './components/Advisors'
 import Weeks from './components/Weeks'
+import Week from './components/Week'
 import './App.css'
 const URL = 'https://mybeautyadvisors-rails.herokuapp.com'
 
@@ -176,6 +177,13 @@ class App extends Component {
                 fetchWeeks={this.fetchWeeks}
                 deleteWeek={this.deleteWeek}
                 handleWeekView={this.handleWeekView}
+              />
+            )
+          } else if (this.state.view === 'week') {
+            return (
+              <Week
+                selectedAdvisor={this.state.selectedAdvisor}
+                selectedWeek={this.state.selectedWeek}
               />
             )
           }
