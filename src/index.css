@@ -82,6 +82,9 @@ div .store:hover, .advisor:hover, .week:hover, .graph:hover {
 .center {
   text-align: center;
 }
+h1:hover {
+  cursor: pointer;
+}
 h2 {
   font-weight: bolder;
   margin-top: 3%;

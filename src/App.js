@@ -148,7 +148,7 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1><span className="red">MY</span> <span className="thin">BEAUTY ADVISORS</span></h1>
+        <h1 onClick={()=>{this.setView('stores')}}><span className="red">MY</span> <span className="thin">BEAUTY ADVISORS</span></h1>
         {(()=>{
           if(this.state.view === 'stores') {
             return (
