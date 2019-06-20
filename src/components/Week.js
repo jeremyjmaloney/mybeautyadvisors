@@ -13,8 +13,10 @@ class Week extends Component {
       atv_perc: '',
       sbr_data: 0,
       sbr_color: '',
+      sbr_perc: 0,
       total_data: 0,
-      total_color: ''
+      total_color: '',
+      total_perc: 0
     }
   }
   checkData = (data) => {
@@ -26,10 +28,30 @@ class Week extends Component {
       return("#00ff00")
     }
   }
+  checkSbrData = (data) => {
+    if(data < 60) {
+      return("#ff0000")
+    } else if (data >= 60 && data < 65) {
+      return("#ffff00")
+    } else if (data >= 65) {
+      return("#00ff00")
+    }
+  }
+  checkTotalData = (data) => {
+    if(data < 75) {
+      return("#ff0000")
+    } else if (data >= 75 && data < 100) {
+      return("#ffff00")
+    } else if (data >= 100) {
+      return("#00ff00")
+    }
+  }
   componentWillMount = () => {
     this.setState({
       upt_data: ((this.props.selectedWeek.act_upt / this.props.selectedWeek.goal_upt) * 100),
-      atv_data: ((this.props.selectedWeek.act_atv / this.props.selectedWeek.goal_atv) * 100)
+      atv_data: ((this.props.selectedWeek.act_atv / this.props.selectedWeek.goal_atv) * 100),
+      sbr_data: this.props.selectedWeek.act_sbr,
+      total_data: ((this.props.selectedWeek.act_total / this.props.selectedWeek.goal_total) * 100)
     })
   }
   componentDidMount = () => {
@@ -37,7 +59,11 @@ class Week extends Component {
       upt_color: this.checkData(this.state.upt_data),
       upt_perc: this.state.upt_data.toFixed(2),
       atv_color: this.checkData(this.state.atv_data),
-      atv_perc: this.state.atv_data.toFixed(2)
+      atv_perc: this.state.atv_data.toFixed(2),
+      sbr_color: this.checkSbrData(this.state.sbr_data),
+      sbr_perc: this.state.sbr_data.toFixed(2),
+      total_color: this.checkTotalData(this.state.total_data),
+      total_perc: this.state.total_data.toFixed(2)
     })
   }
   render() {
@@ -79,6 +105,42 @@ class Week extends Component {
             />
           </svg>
           <h4>ATV: ${this.props.selectedWeek.act_atv} | GOAL: ${this.props.selectedWeek.goal_atv} | VARIANCE: ${this.props.selectedWeek.act_atv - this.props.selectedWeek.goal_atv}</h4>
+        </div>
+        <div className="graph">
+          <h2 className="graphtitle">SALLY BEAUTY REWARDS</h2>
+          <svg width={300} height={300}>
+            <text x={150} y={160} textAnchor="middle" >
+              {this.state.sbr_perc}%
+            </text>
+            <VictoryPie
+              standalone={false}
+              padAngle={0}
+              labels={()=>null}
+              innerRadius={80}
+              width={300} height={300}
+              data={[{'key': "actual", 'y': this.state.sbr_data}, {'key': "goal", 'y': (100-this.state.sbr_data)}]}
+              colorScale={[this.state.sbr_color, "#dddddd"]}
+            />
+          </svg>
+          <h4>SBR: {this.props.selectedWeek.act_sbr}% | GOAL: {this.props.selectedWeek.goal_sbr}% | VARIANCE: {this.props.selectedWeek.act_sbr - this.props.selectedWeek.goal_sbr}%</h4>
+        </div>
+        <div className="graph">
+          <h2 className="graphtitle">TOTAL SALES</h2>
+          <svg width={300} height={300}>
+            <text x={150} y={160} textAnchor="middle" >
+              {this.state.total_perc}%
+            </text>
+            <VictoryPie
+              standalone={false}
+              padAngle={0}
+              labels={()=>null}
+              innerRadius={80}
+              width={300} height={300}
+              data={[{'key': "actual", 'y': this.state.total_data}, {'key': "goal", 'y': (100-this.state.total_data)}]}
+              colorScale={[this.state.total_color, "#dddddd"]}
+            />
+          </svg>
+          <h4>SALES: ${this.props.selectedWeek.act_total} | GOAL: ${this.props.selectedWeek.goal_total} | VARIANCE: ${this.props.selectedWeek.act_total - this.props.selectedWeek.goal_total}</h4>
         </div>
       </div>
     )
