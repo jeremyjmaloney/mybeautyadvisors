@@ -34,8 +34,9 @@ class Advisors extends Component {
     return (
       <div className="advisors-container">
         <button className="backbtn" onClick={()=>{this.props.setView('stores')}}>BACK</button>
+        <h2 className="center"><span className="red">STORE</span> | #{this.props.selectedStore.store_number}</h2>
         <div className="advisors-form">
-          <h2>ADD A NEW BEAUTY ADVISOR</h2>
+          <h2>NEW BEAUTY ADVISOR</h2>
           <form className="form" onSubmit={this.handleSubmit}>
             <input type="text" name="name" value={this.state.name} placeholder="ADVISOR NAME" autoComplete="off" onChange={this.handleName}/>
 
@@ -43,12 +44,12 @@ class Advisors extends Component {
           </form>
         </div>
         <div className="advisors-list">
-          <h2>ALL ADVISORS</h2>
+          <h2>ALL BEAUTY ADVISORS</h2>
           {this.props.advisors.map((advisor, index) => {
             return (
               <div className="advisor" key={index}>
                 <button onClick={()=>{this.props.deleteAdvisor(advisor.id)}} className="delete">X</button>
-                <h3>{advisor.name}</h3>
+                <h3 className="name">{advisor.name}</h3>
                 <button onClick={()=>{this.props.handleAdvisorView('weeks', advisor)}}>VIEW ADVISOR</button>
               </div>
             )

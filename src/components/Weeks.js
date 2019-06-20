@@ -92,9 +92,9 @@ class Weeks extends Component {
     return (
       <div className="weeks-container">
         <button className="backbtn" onClick={()=>{this.props.setView('advisors')}}>BACK</button>
-        <h1 className="center">{this.props.selectedAdvisor.name}</h1>
+        <h2 className="center"><span className="red">ADVISOR</span> | {this.props.selectedAdvisor.name}</h2>
         <div className="weeks-form">
-          <h2>ADD A NEW WEEK / MONTH</h2>
+          <h2>NEW WEEK</h2>
           <form className="form" onSubmit={this.handleSubmit}>
             <input type="text" name="date" value={this.state.date} placeholder="DATES / MONTH" autoComplete="off" onChange={this.handleDate}/><br />
 
@@ -123,7 +123,7 @@ class Weeks extends Component {
             return (
               <div className="week" key={index}>
                 <button className="delete" onClick={()=>{this.props.deleteWeek(week.id)}}>X</button>
-                <h3>{week.date}</h3>
+                <h3 className="name">{week.date}</h3>
                 <button onClick={()=>{this.props.handleWeekView('week', week)}}>VIEW WEEK</button>
               </div>
             )

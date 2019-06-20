@@ -78,8 +78,8 @@ class Week extends Component {
     return (
       <div className="week-container">
         <button className="backbtn" onClick={()=>{this.props.setView('weeks')}}>BACK</button>
-        <h1 className="center">{this.props.selectedAdvisor.name}</h1>
-        <h2 className="center">WEEK {this.props.selectedWeek.date}</h2>
+        <h2 className="center"><span className="red">ADVISOR</span> | {this.props.selectedAdvisor.name}</h2>
+        <h3 className="center">{this.props.selectedWeek.date}</h3>
         <div className="graph">
           <h2 className="graphtitle">UNITS PER TRANSACTION</h2>
           <svg width={300} height={300}>
