@@ -128,7 +128,7 @@ class Week extends Component {
               labels={()=>null}
               innerRadius={80}
               width={300} height={300}
-              data={[{'key': "actual", 'y': this.state.sbr_data}, {'key': "goal", 'y': (100-this.state.sbr_data)}]}
+              data={[{'key': "actual", 'y': this.state.sbr_data}, {'key': "goal", 'y': (this.props.selectedWeek.goal_sbr -this.state.sbr_data)}]}
               colorScale={[this.state.sbr_color, "#dddddd"]}
             />
           </svg>
