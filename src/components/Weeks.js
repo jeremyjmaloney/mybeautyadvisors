@@ -92,7 +92,7 @@ class Weeks extends Component {
     return (
       <div className="weeks-container">
         <button className="backbtn" onClick={()=>{this.props.setView('advisors')}}>BACK</button>
-        <h1>{this.props.selectedAdvisor.name}</h1>
+        <h1 className="center">{this.props.selectedAdvisor.name}</h1>
         <div className="weeks-form">
           <h2>ADD A NEW WEEK / MONTH</h2>
           <form className="form" onSubmit={this.handleSubmit}>
@@ -118,10 +118,11 @@ class Weeks extends Component {
           </form>
         </div>
         <div className="weeks-list">
+          <h2>ALL WEEKS</h2>
           {this.props.weeks.map((week, index) => {
             return (
               <div className="week" key={index}>
-                <button onClick={()=>{this.props.deleteWeek(week.id)}}>X</button>
+                <button className="delete" onClick={()=>{this.props.deleteWeek(week.id)}}>X</button>
                 <h3>{week.date}</h3>
                 <button onClick={()=>{this.props.handleWeekView('week', week)}}>VIEW WEEK</button>
               </div>

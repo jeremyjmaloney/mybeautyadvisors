@@ -44,7 +44,7 @@ class Stores extends Component {
           <form className="form" onSubmit={this.handleSubmit}>
             <input type="text" name="store_number" value={this.state.store_number} placeholder="STORE NUMBER" autoComplete="off" onChange={this.handleStoreNumber}/>
 
-            <input type="text" name="store_name" value={this.state.store_name} placeholder="STORE NAME" autoComplete="off" onChange={this.handleStoreName}/>
+            <input type="text" name="store_name" value={this.state.store_name} placeholder="STORE LOCATION" autoComplete="off" onChange={this.handleStoreName}/>
 
             <input type="text" name="manager_name" value={this.state.manager_name} placeholder="MANAGER NAME" autoComplete="off" onChange={this.handleManagerName}/>
 
@@ -57,10 +57,10 @@ class Stores extends Component {
             return (
               <div className="store" key={index}>
                 <button className="delete" onClick={()=>{this.props.deleteStore(store.id)}}>X</button>
-                <h3>STORE #{store.store_number}</h3>
-                <h4>{store.store_name}</h4>
-                <h4>MANAGER: {store.manager_name}</h4>
-                <button onClick={()=>{this.props.handleStoreView('advisors', store)}}>VIEW STORE</button> 
+                <h3>STORE | #{store.store_number}</h3>
+                <h3>LOCATION | {store.store_name}</h3>
+                <h3>MANAGER | {store.manager_name}</h3>
+                <button onClick={()=>{this.props.handleStoreView('advisors', store)}}>VIEW STORE</button>
               </div>
             )
           })}

@@ -11,11 +11,84 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+body {
+  background-image: url('https://cloud.media-jane.com/q_auto,f_auto,w_600,h_600,dpr_2,c_limit/v1/img/deals_additional/cede5355f1b74e2aa66c242fffdcd181.jpg');
+  background-size: cover;
+}
+.container {
+  width: 85%;
+  height: 85%;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 4px;
+  margin: auto;
+  padding: 2%;
+  overflow: scroll;
+}
+input[type="text"] {
+  border: none;
+  outline: none;
+  font-size: 1em;
+  background: transparent;
+  border-bottom: 1px solid black;
+  margin: 2%;
+}
+input[type="submit"] {
+  border: none;
+  font-size: .75em;
+  font-weight: bolder;
+  color: #d12c34;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 1% 2%;
+}
+input[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #d12c34;
+  color: white;
+  transition: .4s;
+}
+input[type="submit"]:focus {
+  outline: none;
+  background-color: #d12c34;
+  color: white;
+  transition: .4s;
+}
+.stores-list, .advisors-list, .weeks-list, .graph-list {
+  text-align: center;
+}
+.store, .advisor, .week, .graph {
+  margin: 2% auto;
+  width: 50%;
+  border-radius: 4px;
+  box-shadow: 0 0 5px 1px #e2e2e2;
+}
+div .store:hover, .advisor:hover, .week:hover, .graph:hover {
+  background-color: rgba(209,44,52,.1);
+  transition: .3s;
+}
+.delete {
+  float: left;
+}
 .graph {
   width: 400px;
   height: 400px;
-  margin: auto;
   text-align: center;
+}
+.center {
+  text-align: center;
+}
+h2 {
+  font-weight: bolder;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+h3 {
+  clear: both;
 }
 text {
   font-size: 1.75em;
@@ -33,6 +106,19 @@ button {
   border: 1px solid black;
   border-radius: 4px;
   padding: 1% 2%;
+  margin: 2%;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #d12c34;
+  color: white;
+  transition: .4s;
+}
+button:focus {
+  outline: none;
+  background-color: #d12c34;
+  color: white;
+  transition: .4s;
 }
 .red {
   color: #d12c34;
