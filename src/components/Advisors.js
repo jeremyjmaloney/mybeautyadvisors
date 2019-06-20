@@ -33,6 +33,7 @@ class Advisors extends Component {
   render() {
     return (
       <div className="advisors-container">
+        <button className="backbtn" onClick={()=>{this.props.setView('stores')}}>BACK</button>
         <div className="advisors-form">
           <h2>ADD A NEW BEAUTY ADVISOR</h2>
           <form className="form" onSubmit={this.handleSubmit}>

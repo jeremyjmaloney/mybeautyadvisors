@@ -77,6 +77,7 @@ class Week extends Component {
   render() {
     return (
       <div className="week-container">
+        <button className="backbtn" onClick={()=>{this.props.setView('weeks')}}>BACK</button>
         <h1>{this.props.selectedAdvisor.name} - {this.props.selectedWeek.date}</h1>
         <div className="graph">
           <h2 className="graphtitle">UNITS PER TRANSACTION</h2>

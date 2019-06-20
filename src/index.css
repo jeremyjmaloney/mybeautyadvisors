@@ -24,3 +24,20 @@ text {
 .graphtitle {
   margin-bottom: 0px;
 }
+button {
+  border: none;
+  font-size: .75em;
+  font-weight: bolder;
+  color: #d12c34;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 1% 2%;
+}
+.red {
+  color: #d12c34;
+  font-weight: bolder;
+}
+.thin {
+  font-weight: 200;
+}

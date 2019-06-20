@@ -91,6 +91,7 @@ class Weeks extends Component {
   render() {
     return (
       <div className="weeks-container">
+        <button className="backbtn" onClick={()=>{this.props.setView('advisors')}}>BACK</button>
         <h1>{this.props.selectedAdvisor.name}</h1>
         <div className="weeks-form">
           <h2>ADD A NEW WEEK / MONTH</h2>

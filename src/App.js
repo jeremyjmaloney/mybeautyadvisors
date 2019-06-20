@@ -137,13 +137,18 @@ class App extends Component {
     })
     console.log(week)
   }
+  setView = (goToView) => {
+    this.setState({
+      view: goToView
+    })
+  }
   componentDidMount() {
     this.fetchStores()
   }
   render() {
     return (
       <div className="container">
-        <h1>MY BEAUTY ADVISORS</h1>
+        <h1><span className="red">MY</span> <span className="thin">BEAUTY ADVISORS</span></h1>
         {(()=>{
           if(this.state.view === 'stores') {
             return (
@@ -159,6 +164,7 @@ class App extends Component {
             return (
               <Advisors
                 view={this.state.view}
+                setView={this.setView}
                 fetchAdvisors={this.fetchAdvisors}
                 advisors={this.state.advisors}
                 createAdvisor={this.createAdvisor}
@@ -171,6 +177,7 @@ class App extends Component {
             return (
               <Weeks
                 view={this.state.view}
+                setView={this.setView}
                 selectedAdvisor={this.state.selectedAdvisor}
                 weeks={this.state.weeks}
                 createWeek={this.createWeek}
@@ -182,6 +189,7 @@ class App extends Component {
           } else if (this.state.view === 'week') {
             return (
               <Week
+                setView={this.setView}
                 selectedAdvisor={this.state.selectedAdvisor}
                 selectedWeek={this.state.selectedWeek}
               />
