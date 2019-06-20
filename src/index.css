@@ -27,6 +27,7 @@ body {
   margin: auto;
   padding: 2%;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 input[type="text"] {
   border: none;
