@@ -8,15 +8,19 @@ class Week extends Component {
       upt_data: 0,
       upt_color: '',
       upt_perc: 0,
+      upt_var: 0,
       atv_data: 0,
       atv_color: '',
       atv_perc: '',
+      atv_var: 0,
       sbr_data: 0,
       sbr_color: '',
       sbr_perc: 0,
+      sbr_var: 0,
       total_data: 0,
       total_color: '',
-      total_perc: 0
+      total_perc: 0,
+      total_var: 0
     }
   }
   checkData = (data) => {
@@ -49,9 +53,13 @@ class Week extends Component {
   componentWillMount = () => {
     this.setState({
       upt_data: ((this.props.selectedWeek.act_upt / this.props.selectedWeek.goal_upt) * 100),
+      upt_var: (this.props.selectedWeek.act_upt - this.props.selectedWeek.goal_upt).toFixed(2),
       atv_data: ((this.props.selectedWeek.act_atv / this.props.selectedWeek.goal_atv) * 100),
+      atv_var: (this.props.selectedWeek.act_atv - this.props.selectedWeek.goal_atv).toFixed(2),
       sbr_data: this.props.selectedWeek.act_sbr,
-      total_data: ((this.props.selectedWeek.act_total / this.props.selectedWeek.goal_total) * 100)
+      sbr_var: (this.props.selectedWeek.act_sbr - this.props.selectedWeek.goal_sbr).toFixed(2),
+      total_data: ((this.props.selectedWeek.act_total / this.props.selectedWeek.goal_total) * 100),
+      total_var: (this.props.selectedWeek.act_total - this.props.selectedWeek.goal_total).toFixed(2)
     })
   }
   componentDidMount = () => {
@@ -86,7 +94,7 @@ class Week extends Component {
               colorScale={[this.state.upt_color, "#dddddd"]}
             />
           </svg>
-          <h4>UPT: {this.props.selectedWeek.act_upt} | GOAL: {this.props.selectedWeek.goal_upt} | VARIANCE: {this.props.selectedWeek.act_upt - this.props.selectedWeek.goal_upt} units</h4>
+          <h4>UPT: {this.props.selectedWeek.act_upt} | GOAL: {this.props.selectedWeek.goal_upt} | VARIANCE: {this.state.upt_var} units</h4>
         </div>
         <div className="graph">
           <h2 className="graphtitle">AVERAGE TRANSACTION VALUE</h2>
@@ -104,7 +112,7 @@ class Week extends Component {
               colorScale={[this.state.atv_color, "#dddddd"]}
             />
           </svg>
-          <h4>ATV: ${this.props.selectedWeek.act_atv} | GOAL: ${this.props.selectedWeek.goal_atv} | VARIANCE: ${this.props.selectedWeek.act_atv - this.props.selectedWeek.goal_atv}</h4>
+          <h4>ATV: ${this.props.selectedWeek.act_atv} | GOAL: ${this.props.selectedWeek.goal_atv} | VARIANCE: ${this.state.atv_var}</h4>
         </div>
         <div className="graph">
           <h2 className="graphtitle">SALLY BEAUTY REWARDS</h2>
@@ -122,7 +130,7 @@ class Week extends Component {
               colorScale={[this.state.sbr_color, "#dddddd"]}
             />
           </svg>
-          <h4>SBR: {this.props.selectedWeek.act_sbr}% | GOAL: {this.props.selectedWeek.goal_sbr}% | VARIANCE: {this.props.selectedWeek.act_sbr - this.props.selectedWeek.goal_sbr}%</h4>
+          <h4>SBR: {this.props.selectedWeek.act_sbr}% | GOAL: {this.props.selectedWeek.goal_sbr}% | VARIANCE: {this.state.sbr_var}%</h4>
         </div>
         <div className="graph">
           <h2 className="graphtitle">TOTAL SALES</h2>
@@ -140,7 +148,7 @@ class Week extends Component {
               colorScale={[this.state.total_color, "#dddddd"]}
             />
           </svg>
-          <h4>SALES: ${this.props.selectedWeek.act_total} | GOAL: ${this.props.selectedWeek.goal_total} | VARIANCE: ${this.props.selectedWeek.act_total - this.props.selectedWeek.goal_total}</h4>
+          <h4>SALES: ${this.props.selectedWeek.act_total} | GOAL: ${this.props.selectedWeek.goal_total} | VARIANCE: ${this.state.total_var}</h4>
         </div>
       </div>
     )
