@@ -14,4 +14,13 @@ code {
 .graph {
   width: 400px;
   height: 400px;
+  margin: auto;
+  text-align: center;
+}
+text {
+  font-size: 1.75em;
+  font-weight: bold;
+}
+.graphtitle {
+  margin-bottom: 0px;
 }
