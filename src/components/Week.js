@@ -24,11 +24,11 @@ class Week extends Component {
     }
   }
   checkData = (data) => {
-    if(data < 50) {
+    if(data < 60) {
       return("#ff0000")
-    } else if (data >= 50 && data < 75) {
+    } else if (data >= 60 && data < 95) {
       return("#ffff00")
-    } else if (data >= 75) {
+    } else if (data >= 95) {
       return("#00ff00")
     }
   }
